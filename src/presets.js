@@ -31,6 +31,7 @@ deck.getRandom = (min, max) => {
   number %= range
   return number + min
 };
+import { shuffle, newDecks } from '52-deck'
 import type { SideBets, Rule, State } from './types'
 
 export const getDefaultSideBets = (active: boolean = false) : SideBets => {
