@@ -17,7 +17,20 @@
  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 import * as TYPES from './constants'
-import { shuffle, newDecks } from '52-deck'
+// import { shuffle, newDecks } from '52-deck'
+const deck = require('52-deck');
+deck.getRandom = (min, max) => {
+  let number
+  const range = max - min + 1
+  do
+  {
+    const buffer = crypto.randomBytes(4)
+    number = buffer.readUInt8(0)
+  }
+  while (number >= Number.MAX_VALUE - (Number.MAX_VALUE % range))
+  number %= range
+  return number + min
+};
 import type { SideBets, Rule, State } from './types'
 
 export const getDefaultSideBets = (active: boolean = false) : SideBets => {
